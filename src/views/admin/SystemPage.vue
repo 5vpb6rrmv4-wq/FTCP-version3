@@ -1,0 +1,13 @@
+<template>
+<div class="page-section"><div class="home-card"><div class="card-header"><span class="card-title"><span class="title-dot"></span>系统管理</span></div><div class="card-body"><el-tabs type="border-card">
+<el-tab-pane label="用户管理"><el-table :data="users" size="small" stripe><el-table-column prop="id" label="工号/学号" width="120"/><el-table-column prop="name" label="姓名" width="80"/><el-table-column prop="role" label="角色" width="100"><template #default><el-tag size="small" round>管理员</el-tag></template></el-table-column><el-table-column prop="college" label="学院" width="150"/><el-table-column prop="status" label="状态" width="80"><template #default><el-tag type="success" size="small" round>正常</el-tag></template></el-table-column><el-table-column label="操作" width="120"><template #default><el-button text type="primary" size="small">编辑</el-button><el-button text type="danger" size="small">禁用</el-button></template></el-table-column></el-table></el-tab-pane>
+<el-tab-pane label="角色权限"><el-table :data="roles" size="small" stripe><el-table-column prop="name" label="角色名称" width="150"/><el-table-column prop="desc" label="描述" min-width="240"/><el-table-column prop="count" label="用户数" width="80"/><el-table-column label="操作" width="100"><template #default><el-button text type="primary" size="small">配置权限</el-button></template></el-table-column></el-table></el-tab-pane>
+<el-tab-pane label="数据字典"><el-table :data="dicts" size="small" stripe><el-table-column prop="type" label="字典类型" width="140"/><el-table-column prop="label" label="标签" width="120"/><el-table-column prop="value" label="值" width="80"/><el-table-column prop="sort" label="排序" width="60"/><el-table-column label="操作" width="120"><template #default><el-button text type="primary" size="small">编辑</el-button></template></el-table-column></el-table></el-tab-pane>
+</el-tabs></div></div></div></template>
+<script setup lang="ts">
+import {ref} from "vue"
+const users=ref([{id:"admin001",name:"系统管理员",role:"超级管理员",college:"全校",status:"正常"},{id:"T2023001",name:"李教授",role:"教师",college:"计算机学院",status:"正常"}])
+const roles=ref([{name:"超级管理员",desc:"拥有全部功能权限",count:2},{name:"一级管理员",desc:"招生+培养+学位管理权限",count:5},{name:"二级管理员",desc:"学院级别管理权限",count:12}])
+const dicts=ref([{type:"性别",label:"男",value:"1",sort:1},{type:"性别",label:"女",value:"2",sort:2},{type:"学位",label:"硕士",value:"master",sort:1},{type:"学位",label:"博士",value:"doctor",sort:2}])
+</script>
+<style scoped>.page-section{max-width:1100px}</style>
