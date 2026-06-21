@@ -1,0 +1,13 @@
+<template>
+<div class="page-section"><div class="home-card"><div class="card-header"><span class="card-title"><span class="title-dot"></span>学生管理</span></div><div class="card-body"><el-tabs type="border-card">
+<el-tab-pane label="学籍信息"><el-input v-model="kw" placeholder="搜索学号/姓名..." style="width:280px;margin-bottom:12px" clearable/><el-table :data="students" size="small" stripe><el-table-column prop="id" label="学号" width="120"/><el-table-column prop="name" label="姓名" width="80"/><el-table-column prop="college" label="学院" width="150"/><el-table-column prop="major" label="专业" width="160"/><el-table-column prop="grade" label="年级" width="70"/><el-table-column prop="status" label="状态" width="90"><template #default><el-tag type="success" size="small" round>在籍</el-tag></template></el-table-column><el-table-column label="操作" width="100"><template #default><el-button text type="primary" size="small">查看</el-button></template></el-table-column></el-table><el-pagination style="margin-top:12px;justify-content:center" background layout="prev,pager,next" :total="100" :page-size="10"/></el-tab-pane>
+<el-tab-pane label="学籍异动"><el-table :data="changes" size="small" stripe><el-table-column prop="name" label="姓名" width="80"/><el-table-column prop="type" label="类型" width="100"><template #default><el-tag size="small" round>休学</el-tag></template></el-table-column><el-table-column prop="reason" label="原因" min-width="180"/><el-table-column prop="date" label="日期" width="110"/><el-table-column prop="status" label="状态" width="90"><template #default><el-tag type="success" size="small" round>已批准</el-tag></template></el-table-column></el-table></el-tab-pane>
+<el-tab-pane label="统计报表"><el-descriptions :column="3" border><el-descriptions-item label="在校生">1320人</el-descriptions-item><el-descriptions-item label="学博">120人</el-descriptions-item><el-descriptions-item label="学硕">680人</el-descriptions-item><el-descriptions-item label="专硕">520人</el-descriptions-item><el-descriptions-item label="休学">52人</el-descriptions-item><el-descriptions-item label="延毕">188人</el-descriptions-item></el-descriptions></el-tab-pane>
+</el-tabs></div></div></div></template>
+<script setup lang="ts">
+import {ref} from "vue"
+const kw=ref("")
+const students=ref([{id:"2023301001",name:"张三",college:"计算机学院",major:"计算机科学与技术",grade:"2023"},{id:"2023301002",name:"李四",college:"计算机学院",major:"计算机科学与技术",grade:"2023"},{id:"2024301001",name:"王五",college:"计算机学院",major:"软件工程",grade:"2024"}])
+const changes=ref([{name:"张三",type:"休学",reason:"身体原因",date:"2025-09-10",status:"已批准"}])
+</script>
+<style scoped>.page-section{max-width:1200px}</style>
